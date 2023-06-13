@@ -123,7 +123,7 @@
     {%- if column_name == 'id' -%}
         {{column_name}} as customer_id
     
-    {%- elif column_name == 'created_at' -%}
+    {%- elif column_name == 'processed_at' -%}
         ({{column_name}} at time zone '{{var("time_zone")}}')::date as customer_acquisition_date
 
     {%- else -%}
