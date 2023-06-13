@@ -34,7 +34,7 @@ WITH raw_data AS
     transactions AS 
     (SELECT 
         order_id, 
-        created_at::date as transaction_date,
+        processed_at::date as transaction_date,
         COALESCE(SUM(CASE WHEN kind in ('sale','authorization') THEN transaction_amount END),0) as paid_by_customer,
         COALESCE(SUM(CASE WHEN kind = 'refund' THEN transaction_amount END),0) as refunded
     FROM staging
