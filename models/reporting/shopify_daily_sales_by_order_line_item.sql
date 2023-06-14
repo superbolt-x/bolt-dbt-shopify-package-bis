@@ -19,11 +19,6 @@ WITH orders AS
     (SELECT product_id, variant_id, product_type, product_tags
     FROM {{ ref('shopify_products') }}
     ),
-    
-    customers AS 
-    (SELECT customer_id, customer_acquisition_date
-    FROM {{ ref('shopify_customers') }}
-    ),
 
     sales AS 
     (SELECT 
@@ -32,6 +27,7 @@ WITH orders AS
         order_id, 
         customer_id,
         customer_order_index,
+        customer_first_order_date::date as customer_acquisition_date,
         order_tags, 
         order_line_id,
         product_id,
@@ -57,4 +53,3 @@ SELECT *,
     date||'_'||order_line_id as unique_key
 FROM sales 
 LEFT JOIN products USING(product_id, variant_id)
-LEFT JOIN customers USING(customer_id)
