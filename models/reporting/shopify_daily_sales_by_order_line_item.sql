@@ -27,7 +27,7 @@ WITH orders AS
         order_id, 
         customer_id,
         customer_order_index,
-        customer_first_order_date::date as customer_acquisition_date,
+        customer_acquisition_date,
         order_tags, 
         order_line_id,
         product_id,
